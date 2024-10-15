@@ -1,76 +1,101 @@
-import { Component, OnInit } from '@angular/core';
-import { MyServiceService } from '../../../my-service.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
+import { RouterLink, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-history',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule,RouterLink,FormsModule,ReactiveFormsModule,],
   templateUrl: './history.component.html',
-  styleUrls: ['./history.component.css']  // Corrected from 'styleUrl' to 'styleUrls'
+  styleUrl: './history.component.css'
 })
-export class HistoryComponent implements OnInit {
-  transdet: any;
-  laundrydet: any;
-  id = localStorage.getItem('cust_id');
-  tid: any;
+export class HistoryComponent {
 
-  // Define the status map at the class level
-  statusMap: { [key: string]: number } = {
-    'Ordered': 1,
-    'Shipped': 2,
-    'On the way': 3,
-    'Delivered': 4
-  };
+  selectedFile: File | null = null;
 
-  constructor(private post: MyServiceService, private route: ActivatedRoute) { }
+  imagePreview: any;
+  // modeOfPayment: any;
+  // paymentAmount: any;
 
-  ngOnInit(): void {
-    // Capture 'tid' from the URL parameters
-    this.route.paramMap.subscribe(params => {
-      this.tid = params.get('tid');
-      console.log('Transaction ID:', this.tid);
+  cust_id = {id:localStorage.getItem('Cust_ID')};
+  trackingNumber: {id: string | null} = {id:localStorage.getItem('Tracking_number')};
+  uploadform: any;
 
-      // Proceed only if 'tid' is present
-      if (this.tid) {
-        // Fetch transaction details
-        this.post.showdetail(this.tid).subscribe((result: any) => {
-          this.transdet = result;
-          console.log(this.transdet);
-        });
-
-        // Fetch laundry details
-        this.post.test(this.tid).subscribe((result: any) => {
-          this.laundrydet = result;
-          console.log(result);
-        });
-      } else {
-        console.error('Transaction ID is missing');
-      }
-    });
+  constructor(private http: HttpClient, private route: Router){
+    this.uploadform = new FormGroup({
+      Mode_of_Payment: new FormControl(null),
+      Amount: new FormControl(null),
+    })
   }
 
-  // Method to get the class based on the step
-  getProgressClass(step: string): string {
-    switch (step) {
-      case 'Ordered':
-        return 'step0';
-      case 'Shipped':
-        return 'step1';
-      case 'On the way':
-        return 'step2';
-      case 'Delivered':
-        return 'step3';
-      default:
-        return 'step0';
+  
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0] as File;
+    this.previewImage();
+  }
+
+  previewImage() {
+    if (this.selectedFile) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result; // Update image preview with selected file
+      };
+      reader.readAsDataURL(this.selectedFile);
     }
   }
 
-  // Method to check if a step is active based on the status
-  isStepActive(stepNumber: number, status: string): boolean {
-    // Use the class-level statusMap to check the step
-    return this.statusMap[status as keyof typeof this.statusMap] >= stepNumber;
+  saveform(){
+    console.log(this.uploadform.value)
   }
+  upload(){
+    console.log(this.trackingNumber.id);
+    console.log(this.uploadform.value)
+    if (this.selectedFile) {
+      const formData = new FormData();
+
+      formData.append('Mode_of_Payment', this.uploadform.get('Mode_of_Payment').value);
+      formData.append('Amount', this.uploadform.get('Amount').value);
+
+      formData.append('Pro_filename', this.selectedFile, this.selectedFile.name);
+    
+      this.http.post(`http://localhost:8000/api/upload/${this.trackingNumber.id}`,formData).subscribe(
+          (response: any) => {
+            Swal.fire({
+              title: 'Success!',
+              text: 'Image uploaded successfully',
+              icon: 'success',
+              confirmButtonText: 'OK'
+            }).then(() => {
+              this.route.navigate(["/main/cusmainhome/homemain/cuscurtrans"]);
+            });
+          },
+          (error: any) => {
+            Swal.fire({
+              title: 'Error!',
+              text: 'Error uploading image',
+              icon: 'error',
+              confirmButtonText: 'OK'
+            });
+            console.error('Error', error);
+          }
+        );
+    } else {
+      Swal.fire({
+        title: 'Warning!',
+        text: 'Please select an image first',
+        icon: 'warning',
+        confirmButtonText: 'OK'
+      });
+    }
+    
+  }
+  
+  ngOnInit(): void {
+    
+  }
+
 }

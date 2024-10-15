@@ -40,13 +40,22 @@
                     <td>
                       <p class="status pending">{{ l.Transac_status }}</p>
                     </td>
+                    @if(l.service != 'Pending'){
                     <button 
-                    class="btn btn-warning btn-sm" 
+                    class="btn btn-secondary btn-sm" 
                     (click)="showDetails(l.Tracking_number, l)" 
-                    [disabled]="l.service != 'Pending'"
+                    disabled
                   >
                     Update
                   </button>
+                }@else{
+                  <button 
+                    class="btn btn-warning btn-sm" 
+                    (click)="showDetails(l.Tracking_number, l)" 
+                  >
+                    Update
+                  </button>
+                }
                 
                 <td>
                   <button 
@@ -101,76 +110,6 @@
     </div>
   </div>
 </div>
-
-<!-- UPDATE MODAL -->
- <!-- <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" #updateModal>
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Update Transaction</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div>
-          <label>Tracking Number: {{ selectedTransaction?.Tracking_number }}</label>
-        </div>
-        <div class="mb-3">
-          <label for="category" class="form-label">Category</label>
-          <select class="form-control" id="category" [(ngModel)]="selectedTransaction.Categ_ID">
-            <option value="" disabled>Select Category</option>
-            
-            @for (category of categories; track category) {
-              <option [value]="category.Categ_ID">{{ category.Category }}</option>
-            }
-          </select>
-        </div>
-        <div class="mb-3">
-          <label for="qty" class="form-label">Quantity</label>
-          <input type="number" class="form-control" id="qty" [(ngModel)]="selectedTransaction.Qty" placeholder="Enter quantity" min="1">
-        </div>
-        <div class="row">
-          <div class="col-12 col-md-6 mb-3">
-            <div class="form-group">
-              <label for="services" class="control-label">Services</label><br>
-              <div class="d-flex">
-                <div class="form-check me-3">
-                  <input class="form-check-input" type="radio" name="serviceType" id="handWash" value="handWash" [(ngModel)]="selectedTransaction.Transac_status">
-                  <label class="form-check-label" for="handWash">Hand Wash</label>
-                </div>
-                <div class="form-check me-3">
-                  <input class="form-check-input" type="radio" name="serviceType" id="press" value="press" [(ngModel)]="selectedTransaction.Transac_status">
-                  <label class="form-check-label" for="press">Press</label>
-                </div>
-                <div class="form-check me-3">
-                  <input class="form-check-input" type="radio" name="serviceType" id="rush" value="rush" [(ngModel)]="selectedTransaction.Transac_status">
-                  <label class="form-check-label" for="rush">Rush Jobs</label>
-                </div>
-                <div class="form-check me-3">
-                  <input class="form-check-input" type="radio" name="serviceType" id="pick-up" value="pick-up" [(ngModel)]="selectedTransaction.Transac_status">
-                  <label class="form-check-label" for="pick-up">Pick-up</label>
-                </div>
-                <div class="form-check me-3">
-                  <input class="form-check-input" type="radio" name="serviceType" id="delivery" value="delivery" [(ngModel)]="selectedTransaction.Transac_status">
-                  <label class="form-check-label" for="delivery">Delivery</label>
-                </div>
-              </div>
-              <label>Selected Service: {{ selectedTransaction.Transac_status }}</label>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="updateTransaction()">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-
-
-
-
 
 <!-- The Existing New Transaction Modal -->
 <div class="modal" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

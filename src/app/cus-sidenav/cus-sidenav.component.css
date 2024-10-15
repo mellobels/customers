@@ -6,12 +6,6 @@
   margin: 0 10px; /* Adjust spacing between nav items */
 }
 
-  font-size: 18px;
-  text-transform: uppercase;
-  height: 82px;
-  line-height: 64px;
-  margin: 0 10px; /* Adjust spacing between nav items */
-}
 
 .flare {
   background: #5988e2;
@@ -27,6 +21,7 @@
 .topbarElements > div:nth-of-type(1) {
   font-size: 1.5rem; /* Adjusted font size */
   color: #ccc;
+}
 
 .topbarElements > div:nth-of-type(1) {
   font-size: 1.5rem; /* Adjusted font size */
@@ -37,14 +32,14 @@
   .flare {
     margin-right: -15px;
   }
-
+}
 @media screen and (min-width: 1040px) {
   .flare {
     margin-right: -15px;
   }
 }
 
-@media screen and (max-width: 1029px) {
+/* @media screen and (max-width: 1029px) {} */
 
 @media screen and (max-width: 1029px) {
   .navbar-nav {
@@ -54,34 +49,8 @@
     text-align: center;
   }
 
-
   .nav-item {
-    background: rgba(255, 255, 255, 0.1);
-    margin: 2px;
-    line-height: 1.5rem; /* Adjust line height for better readability */
+    background : rgba(255,255,255,0.1);
+    margin:2px;
   }
-}
-
-.navbar-nav .nav-link {
-  position: relative;
-  text-decoration: none;
-  transition: color 0.2s ease-in-out;
-}
-
-.navbar-nav .nav-link::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  display: block;
-  margin: auto;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #eec718; /* Line color */
-  transition: width 0.2s ease-in-out;
-}
-
-.navbar-nav .nav-link:hover::after {
-  width: 100%; /* Full width on hover */
 }
