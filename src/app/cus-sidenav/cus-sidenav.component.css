@@ -6,13 +6,27 @@
   margin: 0 10px; /* Adjust spacing between nav items */
 }
 
+  font-size: 18px;
+  text-transform: uppercase;
+  height: 82px;
+  line-height: 64px;
+  margin: 0 10px; /* Adjust spacing between nav items */
+}
+
 .flare {
+  background: #5988e2;
   background: #5988e2;
 }
 
+
 .flare a.nav-link {
   color: #fff !important;
+  color: #fff !important;
 }
+
+.topbarElements > div:nth-of-type(1) {
+  font-size: 1.5rem; /* Adjusted font size */
+  color: #ccc;
 
 .topbarElements > div:nth-of-type(1) {
   font-size: 1.5rem; /* Adjusted font size */
@@ -23,13 +37,23 @@
   .flare {
     margin-right: -15px;
   }
+
+@media screen and (min-width: 1040px) {
+  .flare {
+    margin-right: -15px;
+  }
 }
+
+@media screen and (max-width: 1029px) {
 
 @media screen and (max-width: 1029px) {
   .navbar-nav {
     margin-bottom: 15px;
     text-align: center;
+    margin-bottom: 15px;
+    text-align: center;
   }
+
 
   .nav-item {
     background: rgba(255, 255, 255, 0.1);

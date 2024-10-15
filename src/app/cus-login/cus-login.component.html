@@ -1,4 +1,4 @@
-<section class="vh-100">
+<!-- <section class="vh-100">
   <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-md-9 col-lg-6 col-xl-5">
@@ -35,6 +35,31 @@
           </div>
         </form>
       </div>
+    </div>
+  </div>
+</section> -->
+
+<section>
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <h2 class="active"><b>ADMIN LOGIN</b></h2>
+      <div class="fadeIn first">
+        <img src="" id="icon" alt="" />
+      </div>
+
+      <form [formGroup]="loginForm" (submit)="login()">
+        <div id="wrong" class="text-center text-danger mx-4 rounded mb-3" style="display: none">Either the Username or Password you've entered is incorrect!
+        </div>
+        <input type="text" id="username" class="fadeIn second" name="username" placeholder="Enter Username" formControlName="email" />
+        <div id="nousername" class="text-danger mt-2 mb-3" style="display: none">
+          <!-- <small>Please input a username</small> -->
+        </div>
+        <input type="password" id="password" class="fadeIn third" name="password" placeholder="Enter Password" formControlName="password"/>
+        <div id="nopassword" class="text-danger mt-2 mb-3" style="display: none" >
+          <!-- <small>Please input a password</small> -->
+        </div>
+        <input type="submit" class="fadeIn fourth btn" value="Log In"/>
+      </form>
     </div>
   </div>
 </section>

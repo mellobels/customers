@@ -1,5 +1,10 @@
 <div class="row align-items-center text-center" style="margin-top: -10px; margin-bottom: -5px; background-color: #eee; font-size: 0.75rem; font-weight: bold; color: #164482;">
+<div class="row align-items-center text-center" style="margin-top: -10px; margin-bottom: -5px; background-color: #eee; font-size: 0.75rem; font-weight: bold; color: #164482;">
   <div class="col">
+    <div class="topbarElements d-inline-flex align-items-center" style="line-height: 2.5rem;">
+      <div><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 1.5rem;"></i></div>
+      <div class="text-start d-md-block d-none" style="padding-top: 0.5rem; padding-left: 5px;">
+        <p class="p-0 m-0 text-secondary">123 Broad St, Rosario, Pangasinan</p>
     <div class="topbarElements d-inline-flex align-items-center" style="line-height: 2.5rem;">
       <div><i class="fa fa-map-marker" aria-hidden="true" style="font-size: 1.5rem;"></i></div>
       <div class="text-start d-md-block d-none" style="padding-top: 0.5rem; padding-left: 5px;">
@@ -12,10 +17,17 @@
       <div><i class="fa fa-envelope" aria-hidden="true" style="font-size: 1.5rem;"></i></div>
       <div class="text-start d-md-block d-none" style="padding-top: 0.5rem; padding-left: 5px;">
         <p class="p-0 m-0 text-secondary">S2Kgmail.com</p>
+    <div class="topbarElements d-inline-flex align-items-center" style="line-height: 2.5rem;">
+      <div><i class="fa fa-envelope" aria-hidden="true" style="font-size: 1.5rem;"></i></div>
+      <div class="text-start d-md-block d-none" style="padding-top: 0.5rem; padding-left: 5px;">
+        <p class="p-0 m-0 text-secondary">S2Kgmail.com</p>
       </div>
     </div>
   </div>
   <div class="col">
+    <div class="topbarElements d-inline-flex align-items-center" style="line-height: 2.5rem;">
+      <div><i class="fa fa-phone" aria-hidden="true" style="font-size: 1.5rem;"></i></div>
+      <div class="text-start d-md-block d-none" style="padding-top: 0.5rem; padding-left: 5px;">
     <div class="topbarElements d-inline-flex align-items-center" style="line-height: 2.5rem;">
       <div><i class="fa fa-phone" aria-hidden="true" style="font-size: 1.5rem;"></i></div>
       <div class="text-start d-md-block d-none" style="padding-top: 0.5rem; padding-left: 5px;">
@@ -25,6 +37,7 @@
   </div>
 </div>
 
+
 <nav class="navbar navbar-expand-lg p-0 m-0" style="background-color: #5988e2;">
   <div class="container-fluid">
     <a class="navbar-brand" href="#"><img src="assets/s2klogo.png" alt="S2K Logo" height="62"></a>
@@ -32,8 +45,10 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
+          <a class="nav-link mx-2 active text-white" [routerLink]="['/main/cusmainhome']" routerLinkActive="active">Home</a>
           <a class="nav-link mx-2 active text-white" [routerLink]="['/main/cusmainhome']" routerLinkActive="active">Home</a>
         </li>
         <li class="nav-item">
@@ -49,6 +64,7 @@
     </div>
   </div>
 </nav>
+
 
 
 <div class="main-content" style="margin-top: 50px">

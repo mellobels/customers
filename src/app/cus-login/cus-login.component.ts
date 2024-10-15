@@ -3,6 +3,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, } from '@angu
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MyServiceService } from '../my-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cus-login',
