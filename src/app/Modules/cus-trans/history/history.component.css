@@ -144,6 +144,7 @@
 .progress-track {
     padding: 0 13%;
 }
+
 .upload-container {
     display: flex;
     flex-direction: column;

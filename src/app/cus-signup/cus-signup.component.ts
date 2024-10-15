@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MyServiceService } from '../my-service.service';
 
 @Component({
   selector: 'app-cus-signup',
@@ -7,6 +8,12 @@ import { Component } from '@angular/core';
   templateUrl: './cus-signup.component.html',
   styleUrl: './cus-signup.component.css'
 })
-export class CusSignupComponent {
+export class CusSignupComponent implements OnInit{
+  constructor(private myserve:MyServiceService){}
+  ngOnInit(): void {
+
+  }
+
+  
 
 }

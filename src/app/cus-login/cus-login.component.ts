@@ -25,11 +25,12 @@ logdata: any;
   this.myserv.login(this.loginForm.value).subscribe((result:any)=>{
     console.log(result);
     const token = result.token;
+    const user = result.user;
     console.log('Token: ', token);
     localStorage.setItem('authToken: ', token);
     if(token != null){
           this.route.navigate(['/main/cusmainhome']);
-          localStorage.setItem("cust_id",result.cust_id);
+          localStorage.setItem("Cust_ID",result.userid);
         }else{
           console.log("ERROR login");
         }

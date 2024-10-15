@@ -12,23 +12,24 @@
           <tr>
             <th>Tracking Number</th>
             <th>Date</th>
+            <th>Service</th>
             <th>Status</th>
             <th>Payment</th>
             <th>Amount</th>
           </tr>
         </thead>
         <tbody>
-          <!-- @for(h of history; track h){ -->
+          @for(h of hist; track h){
             <tr>
               <tr>
-                <td>S2K-629850753431</td>
-                <td>2/3/2024</td>
-                <td>recieved</td>
-                <td>Gcash</td>
-                <td>100</td>
-                <!-- <td></td> -->
+                <td>{{h. trans_tracking_number}}</td>
+                <td>{{h.Transac_date}}</td>
+                <td>{{h.Transac_status}}</td>
+                <td>{{h.service}}</td>
+                <td>{{h.Mode_of_Payment}}</td>
+                <td>{{h.payment_amount}}</td>
             </tr>
-          <!-- } -->
+          }
           
           <!-- <tr>
             <td>TRK002</td>

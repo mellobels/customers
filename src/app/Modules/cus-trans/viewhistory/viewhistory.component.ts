@@ -13,12 +13,14 @@ export class ViewhistoryComponent implements OnInit{
 
   constructor(private post: MyServiceService){}
 
-  id = localStorage.getItem("cust_id");
-  history:any;
+  id = localStorage.getItem("Cust_ID");
+  hist:any;
   ngOnInit(): void {
-    this.post.showhis(this.id).subscribe((data:any)=>{
-      this.history = data;
-      console.log(this.history);
+    this.post.gethis(this.id).subscribe((data:any)=>{
+      this.hist = data;
+      console.log(this.hist);
+      console.log(data);
+      console.log(this.id);
     })
    
   }

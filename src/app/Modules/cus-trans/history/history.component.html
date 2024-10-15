@@ -1,36 +1,42 @@
+
 <div class="card">
     <div class="tracking">
-        <div class="title fs-5">Tracking Order</div>
+      <div class="title fs-5">Tracking Order</div>
     </div>
+    @for(t of transdet; track t){
     <div class="progress-track">
-        <ul id="progressbar">
-            <li class="step0 active fs-6" id="step1">Ordered</li>
-            <li class="step0 active text-center fs-6" id="step2">Shipped</li>
-            <li class="step0 active text-center fs-6" id="step3">On the way</li>
-            <li class="step0 text-end fs-6" id="step4">Delivered</li>
-        </ul>
+      <ul id="progressbar">
+        <li [class]="getProgressClass('Ordered')" [ngClass]="{'active': isStepActive(1, t.transac_status)}">Ordered</li>
+        <li [class]="getProgressClass('Shipped')" [ngClass]="{'active': isStepActive(2, t.transac_status)}">Shipped</li>
+        <li [class]="getProgressClass('On the way')" [ngClass]="{'active': isStepActive(3, t.transac_status)}">On the way</li>
+        <li [class]="getProgressClass('Delivered')" [ngClass]="{'active': isStepActive(4, t.transac_status)}">Delivered</li>
+      </ul>
     </div>
-
+  
     <div class="info">
-        <div class="row">
-            <div class="col-7 fs-6">
-                <span id="heading">Date</span><br>
-                <span id="details">10 August 2024</span>
-            </div>
-            <div class="col-5 fs-6">
-                <span id="heading">Transaction number</span><br>
-                <span id="details"></span>
-            </div>
+      <div class="row">
+        <div class="col-7 fs-6">
+          <span id="heading">Date</span><br>
+          <span id="details">{{t.Transac_date}}</span>
         </div>
+        <div class="col-5 fs-6">
+          <span id="heading">Transaction number</span><br>
+          <span id="details">{{t.tracking_number}}</span>
+        </div>
+      </div>
     </div>
+}
 
+
+    @for(l of laundrydet; track l){
     <div class="pricing">
         <div class="row">
             <div class="col-9 fs-6">
                 <span id="name">Laundry</span>
+                <p>{{l.category}}</p>
             </div>
             <div class="col-3 fs-6">
-                <span id="price"></span>
+                <!-- <span id="price">{{l.price}}</span> -->
             </div>
         </div>
         <div class="row">
@@ -42,6 +48,7 @@
             </div>
         </div>
     </div>
+}
 
     <div class="total">
         <div class="row">

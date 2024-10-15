@@ -1,0 +1,6 @@
+.profile-image {
+    width: 160px; /* Set your desired width */
+    height: 160px; /* Set your desired height */
+    object-fit: cover; /* Ensures the image covers the entire circle */
+    justify-content: center;
+  }
