@@ -37,6 +37,8 @@ export class CusCurtransComponent implements OnInit {
   selectedTransaction: any = {}; // This will hold the selected transaction details
   availableServices = ['Hand Wash', 'Press', 'Rush Jobs', 'Pick-up', 'Delivery']; // Available services
   deletedDetails: number[] = [];  // Array to track deleted transaction details
+  transDet_ID: any;
+
 
   ngOnInit(): void {
     console.log(this.customerId);
@@ -50,6 +52,7 @@ export class CusCurtransComponent implements OnInit {
     this.loadCategories();
     this.loadCustomerData();
     this.loadLatestTransactions();
+
   }
 
   gentrack() {
@@ -89,7 +92,7 @@ export class CusCurtransComponent implements OnInit {
   // Load customer data
   loadCustomerData() {
     this.post.getcustomer(this.customerId).subscribe((data: any) => {
-      this.customerData = Object.values(data);
+      this.customerData = Object.values(data.customerData);
       console.log(this.customerData);
     });
   }
@@ -99,7 +102,23 @@ export class CusCurtransComponent implements OnInit {
     this.post.display(this.customerId).subscribe((data: any) => {
       this.latestTransactions = data.transaction;
       console.log(this.latestTransactions);
+
+      if(this.latestTransactions && this.latestTransactions.length > 0){
+        const pendingTransactions = this.latestTransactions.filter((transs: any) => 
+        transs.service === 'Pending');
+        
+  
+        if(pendingTransactions.length > 0){
+          console.log('Pending Trans', pendingTransactions);
+          this.latestTransactions = pendingTransactions;
+        } else {
+          console.log( "no pending")
+          this.latestTransactions = [];
+        }
+      }
     });
+
+
   }
 
   // Insert a new order
@@ -125,10 +144,10 @@ export class CusCurtransComponent implements OnInit {
   }
 
   // Cancel an order
-  cancelOrder(orderId: any, transactionDetailId: any) {
-    this.post.cancelorder(orderId, transactionDetailId).subscribe((result: any) => {
+  cancelOrder(orderId: any) {
+    this.post.cancel(orderId).subscribe((result: any) => {
       console.log(result);
-      this.fetch();
+      this.loadLatestTransactions();
     });
   }
 
@@ -199,15 +218,21 @@ export class CusCurtransComponent implements OnInit {
 
   viewItem(data: any) {
     // Implement logic to view details of the item based on tracking number
+    this.post.getTransId(data).subscribe((result:any)=>{
+    this.transDet_ID = data;
     console.log(data);
-    localStorage.setItem('Tracking_number', data)
-    this.router.navigate(['/main/cusmainhome/homemain/history/payment']);
+    console.log(result);
+    console.log("ITO ANG TRACKING NUMBER: ", this.transDet_ID);
+    localStorage.setItem('Tracking_number', this.transDet_ID);
+    this.router.navigate(['/main/maintrans/maintrans/panel/history']);
+    });
+    
   }
   cancelItem(id: any){
     console.log(id);
     // if (this.newtransac.valid) {
       // const updatedData = { id: this.trans_id.id, ...this.newtransac.value };
-      this.user.updatetrans(id).subscribe(
+      this.post.updatetrans(id).subscribe(
         (response: any) => {
           // location.reload();
           console.log('Update successful', response);

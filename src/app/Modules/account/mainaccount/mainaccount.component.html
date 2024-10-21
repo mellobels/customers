@@ -8,22 +8,17 @@
                             <div class="user-avatar">
                                 <!-- Dynamically show the fetched or uploaded image -->
                                 <img 
-                                [src]="imagePreview || '/images/profile3.jpg'" 
+                                [src]="imagePreview ||'assets/profile7.png' "
                                 alt="Customer" 
                                 class="img-fluid rounded-circle profile-image"
                               />
-                            </div>
+                            </div>   
                             <!-- Add image upload input -->
                             <div class="form-group mt-3">
                                 <label for="cust_image">Upload Profile Image</label>
                                 <input type="file" id="cust_image" (change)="onImageSelected($event)" accept="image/*">
                             </div>
-                        
-
-                            
-                            
-                            <h5 class="user-name">{{customerData?.Cust_fname}} {{customerData?.Cust_lname}}</h5>
-                              
+                            <h5 class="user-name">{{customer?.Cust_email}}</h5>
                         </div>
                     </div>
                 </div>
@@ -32,7 +27,7 @@
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
             <div class="card h-100">
                 <div class="card-body">
-                    <form [formGroup]="profileform">
+                    <form [formGroup]="profileform" (ngSubmit)="updateCus()">
                         <input type="hidden" class="form-control" formControlName="cid">
                         <div class="row gutters">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -76,8 +71,7 @@
                         <div class="row gutters">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="text-right">
-                                    <button type="button" id="cancel" name="cancel" class="btn btn-cancel">Cancel</button>
-                                    <button type="submit" id="submit" name="submit" class="btn btn-update" (click)="updateCus()">Update</button>
+                                    <button type="submit" id="submit" name="submit" class="btn btn-update">Update</button>
                                 </div>
                             </div>
                         </div>

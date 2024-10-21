@@ -1,106 +1,114 @@
 <section class="vh-100 gradient-custom">
-    <div class="container py-5 h-100">
-      <div class="row justify-content-center align-items-center h-100">
-        <div class="col-12 col-lg-9 col-xl-7">
-          <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
-            <div class="card-body p-4 p-md-5">
-              <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
-              <form>
-  
-                <div class="row">
-                  <div class="col-md-6 mb-4">
-  
-                    <div data-mdb-input-init class="form-outline">
-                      <input type="text" id="firstName" class="form-control form-control-lg" />
-                      <label class="form-label" for="firstName">First Name</label>
-                    </div>
-  
+  <div class="container py-2 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card text-white" style="border-radius: 1rem;">
+          <div class="card-body p-1 text-center">
+
+            <div class="mb-md-5 mt-md-4">
+
+              <h2 class="fw-bold text-dark text-uppercase">Sign Up</h2>
+
+              <form class="row g-3 mx-1 mx-md-4" [formGroup]="signupForm" (ngSubmit) = "signup()">
+                <!-- 2 column grid layout with text inputs for the first and last names -->
+               
+                  <div class="col-md-6 text-dark form-outline mb-4">
+                    <input type="text" class="form-control" formControlName="cust_fname" required/>
+                    <label class="form-label" for="form3Example3">First Name</label>
                   </div>
-                  <div class="col-md-6 mb-4">
+                
   
-                    <div data-mdb-input-init class="form-outline">
-                      <input type="text" id="lastName" class="form-control form-control-lg" />
-                      <label class="form-label" for="lastName">Last Name</label>
+                  <div class="col-md-6 text-dark form-outline mb-4">
+                    <input type="text" class="form-control" formControlName="cust_lname" />
+                    <label class="form-label" for="form3Example3" >Last Name</label>
+                  </div>
+  
+                  <div class="col-md-6 text-dark form-outline mb-4">
+                    <input type="text" class="form-control"  formControlName="cust_mname" />
+                    <label class="form-label" for="form3Example3">Middle Initial</label>
+                  </div>
+  
+                  <div class="col-md-6 text-dark form-outline mb-4">
+                    <input type="text" class="form-control" formControlName="cust_phoneno"/>
+                    <label class="form-label" for="form3Example3" >Phone #</label>
+                  </div>
+    
+                <!-- Email input -->
+                <div class="col-md-6 text-dark form-outline mb-4">
+                  <input type="email" class="form-control" formControlName="cust_email"/>
+                  <label class="form-label" for="form3Example3" >Email address</label>
+                </div>
+  
+                <div class="col-md-12 text-dark form-outline mb-4">
+                  <input type="text"  class="form-control" formControlName="cust_address"/>
+                  <label class="form-label" for="form3Example3" >Address</label>
+                </div>
+  
+                <!-- Password input -->
+                <div class="col-md-6 text-dark form-outline mb-4">
+                  <input type="password" class="form-control" formControlName="cust_password"/>
+                  <label class="form-label" for="form3Example4" >Password</label>
+                </div>
+  
+                <div class="col-md-6 text-dark form-outline mb-4">
+                  <input type="password" class="form-control" formControlName="cust_retypePass"/>
+                  <label class="form-label" for="form3Example4" >Retype password</label>
+                </div>
+
+                    <div class="col-md-6 text-dark"></div>
+                    <button type="submit" class="btn btn-primary btn-block mb-4">
+                      Sign up
+                    </button>
+      
+                    <p><a routerLink="/terms">Terms</a></p>
+                  </form>
+  
+                <div class="modal" tabindex="-1" id="warningmodal">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Warning</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Password should matched!!!</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">Close</button>
+                      </div>
                     </div>
-  
                   </div>
                 </div>
   
-                <div class="row">
-                  <div class="col-md-6 mb-4 d-flex align-items-center">
-  
-                    <div data-mdb-input-init class="form-outline datepicker w-100">
-                      <input type="text" class="form-control form-control-lg" id="birthdayDate" />
-                      <label for="birthdayDate" class="form-label">Birthday</label>
+                <div class="modal" tabindex="-1" id="warningmodalemail">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title text-dark">Warning</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body text-dark">
+                        <p>You must Fill All Fields</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModalemail()">Close</button>
+                      </div>
                     </div>
-  
-                  </div>
-                  <div class="col-md-6 mb-4">
-  
-                    <h6 class="mb-2 pb-1">Gender: </h6>
-  
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
-                        value="option1" checked />
-                      <label class="form-check-label" for="femaleGender">Female</label>
-                    </div>
-  
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
-                        value="option2" />
-                      <label class="form-check-label" for="maleGender">Male</label>
-                    </div>
-  
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender"
-                        value="option3" />
-                      <label class="form-check-label" for="otherGender">Other</label>
-                    </div>
-  
                   </div>
                 </div>
-  
-                <div class="row">
-                  <div class="col-md-6 mb-4 pb-2">
-  
-                    <div data-mdb-input-init class="form-outline">
-                      <input type="email" id="emailAddress" class="form-control form-control-lg" />
-                      <label class="form-label" for="emailAddress">Email</label>
-                    </div>
-  
-                  </div>
-                  <div class="col-md-6 mb-4 pb-2">
-  
-                    <div data-mdb-input-init class="form-outline">
-                      <input type="tel" id="phoneNumber" class="form-control form-control-lg" />
-                      <label class="form-label" for="phoneNumber">Phone Number</label>
-                    </div>
-  
-                  </div>
-                </div>
-  
-                <div class="row">
-                  <div class="col-12">
-  
-                    <select class="select form-control-lg">
-                      <option value="1" disabled>Choose option</option>
-                      <option value="2">Subject 1</option>
-                      <option value="3">Subject 2</option>
-                      <option value="4">Subject 3</option>
-                    </select>
-                    <label class="form-label select-label">Choose option</label>
-  
-                  </div>
-                </div>
-  
-                <div class="mt-4 pt-2">
-                  <input data-mdb-ripple-init class="btn btn-primary btn-lg" type="submit" value="Submit" />
-                </div>
-  
-              </form>
+             
+            
+
             </div>
+
+            <div>
+              <p class="mb-0">Already have an account? <a routerLink="/login" class="text-white-50 fw-bold">LOG IN AS CUSTOMER</a></p>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+

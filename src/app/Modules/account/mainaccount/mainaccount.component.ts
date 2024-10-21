@@ -13,6 +13,7 @@ import { MyServiceService } from '../../../my-service.service';
 })
 export class MainaccountComponent implements OnInit {
   customerData: any;
+  customer: any;
   profileform = new FormGroup({
     cid: new FormControl(null),
     fname: new FormControl(null),
@@ -25,12 +26,11 @@ export class MainaccountComponent implements OnInit {
   });
 
   selectedImage: File | null = null; // Store selected file
-  imagePreview: string | ArrayBuffer | null = ''; // For image preview
+  imagePreview: string | ArrayBuffer | null = null; // For image preview
 
   constructor(private myserv: MyServiceService) {}
 
   custid:any;
- 
 
   // fetch() {
   //   this.custid = localStorage.getItem("Cust_ID");
@@ -62,12 +62,16 @@ export class MainaccountComponent implements OnInit {
     }
   
     this.myserv.getcustomer(this.custid).subscribe((data: any) => {
+      this.customerData = data.customerData;
+      this.customer = data.customerFirst;
+      console.log(this.customerData);
+      console.log(this.customer);
       console.log('Fetched customer data:', data);
       console.log('Using custid:', this.custid);
     
       // Access the customer data using the correct key
-      const customerKey = Object.keys(data)[0]; // Get the first key, which should be '2'
-      const customer = data[customerKey]; // Access the customer object
+      const customerKey = Object.keys(data.customerData)[0]; // Get the first key, which should be '2'
+      const customer = data.customerData[customerKey]; // Access the customer object
   
       if (customer) {
         console.log('Customer:', customer);

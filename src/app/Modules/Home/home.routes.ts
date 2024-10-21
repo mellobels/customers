@@ -9,9 +9,9 @@ export const homeRoute: Routes = [
     {path: 'homemain',component: CusMainhomeComponent,
         children: [
             {path:"cuscurtrans",component:CusCurtransComponent},
-            {path:"history/:tid",component:HistoryComponent,
+            {path:"history/:",component:HistoryComponent,
                 children: [
-                    {path:"payment",component:CusPaymentComponent},
+                    {path:"payment/:Tracking_number",component:CusPaymentComponent},
                     {path:"",redirectTo:"payment",pathMatch:"full"}
                 ]
             },

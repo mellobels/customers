@@ -44,9 +44,9 @@ export class MyServiceService {
     return this.http.post(this.url + 'checklogin.php', JSON.stringify(ldata));
   }
 
-  showhis(gdata:any){
-    return this.http.get(this.url + 'gethis.php?cust_id='+ gdata);
-  }
+  // showhis(gdata:any){
+  //   return this.http.get(this.url + 'gethis.php?cust_id='+ gdata);
+  // }
 
   showdetail(tid:any){
     return this.http.get(this.url + 'showdet.php?transac_id=' + tid);
@@ -150,5 +150,16 @@ export class MyServiceService {
     });
   }
 
+  getTransId(id:any):Observable<any>{
+    return this.http.get(`${this.apiUrl}getTransId/${id}`);
+  }
+
+  signup(id:any):Observable<any>{
+    return this.http.post(`${this.apiUrl}signup`,id)
+  }
+
+  getDetails(id:any){
+    return this.http.get(`${this.apiUrl}getDetails/${id}`);
+  }
 
 }

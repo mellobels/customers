@@ -2,13 +2,13 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cus-payment',
   standalone: true,
-  imports: [CommonModule,RouterLink,FormsModule,ReactiveFormsModule,],
+  imports: [CommonModule,RouterLink,FormsModule,ReactiveFormsModule,RouterOutlet],
   templateUrl: './cus-payment.component.html',
   styleUrl: './cus-payment.component.css'
 })
@@ -22,6 +22,7 @@ export class CusPaymentComponent implements OnInit{
   cust_id = {id:localStorage.getItem('Cust_ID')};
   trackingNumber: {id: string | null} = {id:localStorage.getItem('Tracking_number')};
   uploadform: any;
+  currentDate:any;
 
   constructor(private http: HttpClient, private route: Router){
     this.uploadform = new FormGroup({
@@ -30,7 +31,19 @@ export class CusPaymentComponent implements OnInit{
     })
   }
 
-  
+  ngOnInit(): void {
+    console.log(this.trackingNumber)
+    this.currentDate = this.formatDate(new Date());
+  }
+
+  formatDate(date:Date): string{
+    const options: Intl.DateTimeFormatOptions = {
+      month: 'long',
+      day: '2-digit',
+      year: 'numeric'
+    }
+    return date.toLocaleDateString('en-US',options);
+  }
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0] as File;
@@ -94,9 +107,7 @@ export class CusPaymentComponent implements OnInit{
     
   }
   
-  ngOnInit(): void {
-    
-  }
+
 }
 
 function subscribe(arg0: (response: any) => void, arg1: (error: any) => void): any {

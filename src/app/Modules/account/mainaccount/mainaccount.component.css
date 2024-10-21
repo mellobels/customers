@@ -1,6 +1,34 @@
 .profile-image {
-    width: 160px; /* Set your desired width */
-    height: 160px; /* Set your desired height */
-    object-fit: cover; /* Ensures the image covers the entire circle */
-    justify-content: center;
-  }
+  width: 160px; /* Set your desired width */
+  height: 160px; /* Set your desired height */
+  object-fit: cover; /* Ensures the image covers the entire circle */
+  border: 3px solid #007bff; /* Optional: border around the image */
+}
+
+.user-avatar {
+  margin-bottom: 20px; /* Add spacing below the image */
+}
+
+.form-control-file {
+  border: none; /* Remove default border */
+  padding: 5px; /* Add padding */
+  background-color: #f8f9fa; /* Light background for the input */
+}
+
+.btn-update {
+  background-color: #007bff; /* Primary color for the button */
+  color: white; /* Text color */
+}
+
+.btn-update:hover {
+  background-color: #0056b3; /* Darken button on hover */
+}
+
+.card {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  border-radius: 8px; /* Rounded corners */
+}
+
+.account-settings {
+  padding: 20px; /* Spacing inside the account settings */
+}

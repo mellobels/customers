@@ -13,7 +13,6 @@ import Swal from 'sweetalert2';
   styleUrl: './history.component.css'
 })
 export class HistoryComponent {
-
   selectedFile: File | null = null;
 
   imagePreview: any;
@@ -62,7 +61,8 @@ export class HistoryComponent {
 
       formData.append('Pro_filename', this.selectedFile, this.selectedFile.name);
     
-      this.http.post(`http://localhost:8000/api/upload/${this.trackingNumber.id}`,formData).subscribe(
+      this.http.post(`http://localhost:8000/api/upload/${this.trackingNumber.id}`, formData)
+        .subscribe(
           (response: any) => {
             Swal.fire({
               title: 'Success!',

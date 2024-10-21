@@ -1,0 +1,75 @@
+<div class="container mt-4">
+    <!-- <h1 class="h3 mb-5">Payment</h1> -->
+    <div class="row">
+      <!-- Payment Form Section -->
+      <div class="col-lg-9 mb-4">
+        <div class="accordion" id="accordionPayment">
+          <div class="accordion-item mb-3">
+            <div id="collapseCC" class="accordion-collapse collapse show" data-bs-parent="#accordionPayment">
+              <div class="accordion-body">
+                <div class="progress-track">
+                    <ul id="progressbar">
+                      <li class="step0 active fs-6" id="step1">Ordered</li>
+                      <li class="step0 active text-center fs-6" id="step2">Shipped</li>
+                      <li class="step0 active text-center fs-6" id="step3">On the way</li>
+                      <li class="step0 text-end fs-6" id="step4">Delivered</li>
+                    </ul>
+                  </div>
+                  @for(g of getDet ;track g.Transac_det){
+                  <div class="info">
+                    <div class="row">
+                      <div class="col-7">
+                        <span id="heading">Date</span><br>
+                        <span id="details">{{currentDate}}</span>
+                      </div>
+                      <div class="col-5 pull-right">
+                            <span id="heading">Order No.</span><br>
+                            <span id="details">{{ g.Tracking_number || 'N/A' }} </span>
+                          
+                        </div> 
+                    </div>
+
+                  </div>
+                  <div class="pricing">
+                    <div>
+                      <h6 id="name">Laundry</h6>  
+                      @for(a of g.details; track a.Transacdet_id){
+                        <div class="d-flex justify-content-between">
+                        <span id="price">{{a.Category}}</span>
+                        <span id="price">{{a.price |currency:'PHP'}}</span>
+                        </div>
+                      }
+
+                    </div>
+                    @if(g.status == 'delivery'|| g.status == 'Delivery'){
+
+                      <div>
+                        <h6 id="name">Shipping</h6>
+                        <div class="d-flex justify-content-between">
+                          <span id="price"></span>
+                        </div>
+  
+                      </div>
+                    }
+                  </div>
+                <div class="total">
+                    <div class="row">
+                        <div class="col-9">TOTAL</div>
+                        <div class="col-3"><strong>{{g.total |currency:'PHP'}} </strong></div>
+                      </div> 
+                    </div>
+                  }
+                  </div>
+                </div>
+              </div>      
+            </div>
+          </div>
+      
+      <!-- Upload Payment Section -->
+      <div class="col-lg-3">
+    
+        <router-outlet></router-outlet>
+        
+      </div>
+    </div>
+  </div>
