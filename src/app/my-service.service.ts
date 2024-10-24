@@ -15,11 +15,12 @@ export class MyServiceService {
 
   constructor(private http: HttpClient) { }
 
-  insertorder(idata: any, trackingNumber: string):Observable<any> {
+  insertorder(idata: any, trackingNumber: string,Transac_status:string):Observable<any> {
     // Prepare the data payload for the API
     const data = {
         id: idata,                
         trackingNumber: trackingNumber,
+        Transac_status:Transac_status,
         laundry: this.post,  
         Transac: this.trans
     };

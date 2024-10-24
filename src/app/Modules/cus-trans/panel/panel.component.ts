@@ -14,22 +14,24 @@ export class PanelComponent implements OnInit{
 
   currentDate:any;
   getDet:any;
-  trackingnumber:any;
+  Transac_ID:any;
   track:any;
   constructor(private myserv:MyServiceService){}
   
   ngOnInit(): void {
-    this.trackingnumber = localStorage.getItem('Tracking_number');
-    this.currentDate = this.formatDate(new Date());
-    this.myserv.getDetails(this.trackingnumber).subscribe((result:any)=>{
-    this.getDet = result;
-    this.track = result.Tracking_number;
-      // console.log(this.trackingnumber);
-    console.log(this.getDet);
-    console.log(result)
-    })
-  }
+      this.Transac_ID = localStorage.getItem('temp_ID');
+      console.log(this.Transac_ID);
+      this.currentDate = this.formatDate(new Date());
+      this.myserv.getDetails(this.Transac_ID).subscribe((result:any)=>{
+        this.getDet = result;
+        this.track = result.Tracking_number;
+        // console.log(this.trackingnumber);
+        console.log(this.getDet);
+        console.log(result)
+      })
+    }
 
+    
   formatDate(date:Date): string{
     const options: Intl.DateTimeFormatOptions = {
       month: 'long',

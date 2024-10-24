@@ -20,7 +20,7 @@ export class HistoryComponent {
   // paymentAmount: any;
 
   cust_id = {id:localStorage.getItem('Cust_ID')};
-  trackingNumber: {id: string | null} = {id:localStorage.getItem('Tracking_number')};
+  trackingNumber: {id: string | null} = {id:localStorage.getItem('test')};
   uploadform: any;
 
   constructor(private http: HttpClient, private route: Router){

@@ -1,4 +1,63 @@
-<div class="container-fluid border-container" style="margin-bottom: 50px; background-color: #fff; ">
+<div class="container-fluid border-container" style="margin-bottom: 50px; background-color: #fff;">
+  <!-- Search Bar -->
+  <div class="input-group rounded mb-3 search-bar-container" style="max-width: 100%; width: 100%; max-width: 400px;">
+    <input type="search" class="form-control rounded search-input" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+    <span class="input-group-text border-0 search-addon" id="search-addon">
+      <i class="fas fa-search search-icon"></i>
+    </span>
+  </div>
+
+  <!-- Filter Buttons -->
+  <div class="btn-group mb-3">
+    <button class="btn btn-secondary" (click)="filterStatus('All')">All</button>
+    <button class="btn btn-secondary" (click)="filterStatus('Pending')">Pending</button>
+    <button class="btn btn-secondary" (click)="filterStatus('for Release')">On Process</button>
+    <button class="btn btn-secondary" (click)="filterStatus('Completed')">Completed</button>
+    <button class="btn btn-secondary" (click)="filterStatus('Cancelled')">Cancelled</button>
+  </div>
+
+  <!-- Table -->
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Tracking Number</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Service</th>
+          <th>Payment</th>
+          <th>Amount</th>
+          <th>ACTION</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(h of filteredHist; track h){
+        <tr>
+          <td>{{h.trans_tracking_number}}</td>
+          <td>{{h.Transac_date }}</td>
+          <td>{{h.Transac_status }}</td>
+          <td>{{h.service }}</td>
+          <td>{{h.Mode_of_Payment }}</td>
+          <td>{{h.payment_amount }}</td>
+          <td>
+            <button class="btn btn-primary btn-sm" (click)="viewItem(h.Transac_ID)">View</button>
+          </td>
+        </tr>
+      }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- <div class="container-fluid border-container" style="margin-bottom: 50px; background-color: #fff; ">
     <div class="input-group rounded mb-3 search-bar-container" style="max-width: 100%; width: 100%; max-width: 400px;">
       <input type="search" class="form-control rounded search-input" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
       <span class="input-group-text border-0 search-addon" id="search-addon">
@@ -12,10 +71,11 @@
           <tr>
             <th>Tracking Number</th>
             <th>Date</th>
-            <th>Service</th>
             <th>Status</th>
+            <th>Service</th>
             <th>Payment</th>
             <th>Amount</th>
+            <th>ACTION</th>
           </tr>
         </thead>
         <tbody>
@@ -28,8 +88,11 @@
                 <td>{{h.service}}</td>
                 <td>{{h.Mode_of_Payment}}</td>
                 <td>{{h.payment_amount}}</td>
+                <td> 
+                  <button class="btn btn-primary btn-sm" (click)=" viewItem(h.Transac_ID)">View</button> View button -->
+                <!-- </td>
             </tr>
-          }
+          } --> 
           
           <!-- <tr>
             <td>TRK002</td>
