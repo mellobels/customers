@@ -19,8 +19,9 @@ export class HistoryComponent {
   // modeOfPayment: any;
   // paymentAmount: any;
 
-  cust_id = {id:localStorage.getItem('Cust_ID')};
-  trackingNumber: {id: string | null} = {id:localStorage.getItem('test')};
+  cust_id: any = {id:localStorage.getItem('Cust_ID')};
+  trackingNumber = {id:localStorage.getItem('temp_ID')};
+
   uploadform: any;
 
   constructor(private http: HttpClient, private route: Router){
@@ -58,8 +59,8 @@ export class HistoryComponent {
 
       formData.append('Mode_of_Payment', this.uploadform.get('Mode_of_Payment').value);
       formData.append('Amount', this.uploadform.get('Amount').value);
-
-      formData.append('Pro_filename', this.selectedFile, this.selectedFile.name);
+      formData.append('Proof_filename', this.selectedFile, this.selectedFile.name);
+      formData.append('Cust_ID',this.cust_id.id);
     
       this.http.post(`http://localhost:8000/api/upload/${this.trackingNumber.id}`, formData)
         .subscribe(

@@ -14,6 +14,16 @@ import { MyServiceService } from '../../../my-service.service';
 export class MainaccountComponent implements OnInit {
   customerData: any;
   customer: any;
+
+  // imagePreview: string | ArrayBuffer | null = null;
+  errorMessage: string = ''; 
+  file:  File | null = null;
+  selectedFile: File | null = null;
+  message: string = '';
+  existingImageUrl: string | null = null;
+  intervalId: any;
+
+
   profileform = new FormGroup({
     cid: new FormControl(null),
     fname: new FormControl(null),
@@ -32,29 +42,7 @@ export class MainaccountComponent implements OnInit {
 
   custid:any;
 
-  // fetch() {
-  //   this.custid = localStorage.getItem("Cust_ID");
-  //   this.myserv.getcustomerdata(this.custid).subscribe((data: any) => {
-  //     this.customerData = data;
-  //     if (data && data.length > 0) {
-  //       const customer = data[0]; // Assume there is only one customer
-  //       this.profileform.setValue({
-  //         cid: customer.cust_id,
-  //         fname: customer.cust_fname,
-  //         lname: customer.cust_lname,
-  //         mname: customer.cust_mname,
-  //         phonenum: customer.cust_phoneno,
-  //         address: customer.cust_address,
-  //         email: customer.cust_email,
-  //         cust_image: customer.cust_image // Populate image field
-  //       });
-
-  //       this.imagePreview = customer.cust_image ? `http://localhost/storage/app/public/images/${customer.cust_image}` : null;
-  //     }
-  //   });
-  // }
-
-  ngOnInit(): void {
+  fetch() {
     this.custid = localStorage.getItem("Cust_ID"); // Ensure custid is retrieved from localStorage
     if (!this.custid) {
       console.error("Customer ID is not set or is null");
@@ -88,7 +76,7 @@ export class MainaccountComponent implements OnInit {
           cust_image: customer.Cust_image // Populate image field
         });
   
-        this.imagePreview = customer.Cust_image ? `http://localhost:8000/storage/${customer.Cust_image}` : null;
+        this.imagePreview = customer.Cust_image ? `http://localhost/customer/profile/${customer.Cust_image}` : null;
         console.log('Current form values:', this.profileform.value);
       } else {
         console.warn('No customer data available for ID:', this.custid);
@@ -96,6 +84,10 @@ export class MainaccountComponent implements OnInit {
     }, (error) => {
       console.error('Error fetching customer data:', error);
     });
+  }
+
+  ngOnInit(): void {
+    this.fetch();
   }
   
 
@@ -142,12 +134,16 @@ export class MainaccountComponent implements OnInit {
     this.myserv.updateCus(formData).subscribe(
         (result: any) => {
             // this.fetch();
+            this.fetch();
+            this.profileform.reset();
             console.log(result);
         },
         (error) => {
             console.error("Error uploading data", error);
         }
     );
-}
+  }
+
+
 
 }

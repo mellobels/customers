@@ -88,12 +88,15 @@ export class MyServiceService {
 
 
 
-
-
-
   //LARAVEL
   login(data:any): Observable<any>{
-    return this.http.post(this.apiUrl + 'login',data);
+    return this.http.post(this.apiUrl + 'logins',data);
+  }
+
+  logouts(headers: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    // const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(this.apiUrl + 'logouts', {}, { headers });
   }
 
   updatetrans(udata:any): Observable<any>{

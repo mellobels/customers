@@ -43,7 +43,7 @@
           <a class="nav-link mx-2 text-white" [routerLink]="['/main/mainaccount']" routerLinkActive="active">Account</a>
         </li>
         <li class="nav-item flare">
-          <a class="nav-link mx-2 text-white" [routerLink]="['/login']" routerLinkActive="active">Logout<span class="ms-2">&#x2192;</span></a>
+          <a class="nav-link mx-2 text-white" (click)="logout()" routerLinkActive="active">Logout<span class="ms-2">&#x2192;</span></a>
         </li>
       </ul>
     </div>

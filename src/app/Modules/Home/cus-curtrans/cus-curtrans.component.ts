@@ -79,7 +79,7 @@ export class CusCurtransComponent implements OnInit {
     }
   }
 
-  // Load categories from the service
+
   loadCategories() {
     this.post.getlist().subscribe((data: any) => {
       this.categories = data;
@@ -88,7 +88,6 @@ export class CusCurtransComponent implements OnInit {
     });
   }
 
-  // Load customer data
   loadCustomerData() {
     this.post.getcustomer(this.customerId).subscribe((data: any) => {
       this.customerData = Object.values(data.customerData);
@@ -107,7 +106,7 @@ export class CusCurtransComponent implements OnInit {
 
       if(this.latestTransactions && this.latestTransactions.length > 0){
         const pendingTransactions = this.latestTransactions.filter((transs: any) => 
-        transs.trans_stat === 'Pending');
+        transs.trans_stat === 'paid');
         
   
         if(pendingTransactions.length > 0){
@@ -243,6 +242,8 @@ export class CusCurtransComponent implements OnInit {
     // console.log("ITO ANG PRIMARY KEY: ", this.transDet_ID);
     console.log("ITO ANG PRIMARY KEY: ", this.temp);
     localStorage.setItem('temp_ID', this.temp);
+    const cust_id = localStorage.getItem('Cust_ID');
+    console.log(cust_id)
     this.router.navigate(['/main/maintrans/maintrans/panel/history']);
     });
     
@@ -272,24 +273,24 @@ export class CusCurtransComponent implements OnInit {
     
   }
 
-showDetails(Tracking_number: any, transaction: any) {
-  // First, set selectedTransaction based on the passed transaction
-  this.selectedTransaction = { ...transaction }; // Create a copy of the transaction
-  console.log('Selected transaction:', this.selectedTransaction);
+  showDetails(Tracking_number: any, transaction: any) {
+    // First, set selectedTransaction based on the passed transaction
+    this.selectedTransaction = { ...transaction }; // Create a copy of the transaction
+    console.log('Selected transaction:', this.selectedTransaction);
 
-  // Then, fetch the details and add them to the selected transaction
-  this.post.displayDet(Tracking_number).subscribe((res: any) => {
-    this.selectedTransaction.details = res; // Assign details separately
-    console.log('Transaction details:', this.selectedTransaction.details);
+    // Then, fetch the details and add them to the selected transaction
+    this.post.displayDet(Tracking_number).subscribe((res: any) => {
+      this.selectedTransaction.details = res; // Assign details separately
+      console.log('Transaction details:', this.selectedTransaction.details);
 
-    // Now open the modal
-    const modalElement = document.getElementById('updateModal');
-    if (modalElement) {
-      const modal = new bootstrap.Modal(modalElement);
-      modal.show();
-    }
-  });
-}
+      // Now open the modal
+      const modalElement = document.getElementById('updateModal');
+      if (modalElement) {
+        const modal = new bootstrap.Modal(modalElement);
+        modal.show();
+      }
+    });
+  }
 
 
   // Method to close the modal
@@ -310,31 +311,31 @@ showDetails(Tracking_number: any, transaction: any) {
 
 // Method to remove a detail
 
-removeDetail(index: number) {
-  const detail = this.selectedTransaction.details[index];
-  if (detail.TransacDet_ID) {
-    // Track the detail for deletion if it exists in the database
-    this.deletedDetails.push(detail.TransacDet_ID);
+  removeDetail(index: number) {
+    const detail = this.selectedTransaction.details[index];
+    if (detail.TransacDet_ID) {
+      // Track the detail for deletion if it exists in the database
+      this.deletedDetails.push(detail.TransacDet_ID);
+    }
+    // Remove it from the details array
+    this.selectedTransaction.details.splice(index, 1);
   }
-  // Remove it from the details array
-  this.selectedTransaction.details.splice(index, 1);
-}
 
 // Method to add a new detail row
-addDetail() {
-  if (!this.selectedTransaction.details) {
-    this.selectedTransaction.details = [];
+  addDetail() {
+    if (!this.selectedTransaction.details) {
+      this.selectedTransaction.details = [];
+    }
+    this.selectedTransaction.details.push({
+      Categ_ID: null, // Default or null category
+      Qty: 1, // Default quantity
+    });
   }
-  this.selectedTransaction.details.push({
-    Categ_ID: null, // Default or null category
-    Qty: 1, // Default quantity
-  });
-}
 
 // Optionally, add method to clear deletedDetails after saving
-resetDeletedDetails() {
-  this.deletedDetails = [];
-}
+  resetDeletedDetails() {
+    this.deletedDetails = [];
+  }
 
 
   removeFromList(item: any) {

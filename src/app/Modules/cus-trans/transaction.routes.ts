@@ -13,7 +13,7 @@ export const Transroute: Routes = [
                     {path:"history",component:HistoryComponent},
                     {path:"",redirectTo:"history",pathMatch:"full"},
                     {path:"historydetails",component:HistorydetailsComponent},
-            {path:"",redirectTo:"historydetails",pathMatch:"full"},
+                    {path:"",redirectTo:"historydetails",pathMatch:"full"},
                 ]
             },
             
