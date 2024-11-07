@@ -15,6 +15,23 @@ export class MyServiceService {
 
   constructor(private http: HttpClient) { }
 
+  // insertorder(idata: any, trackingNumber: string,Transac_status:string):Observable<any> {
+  //   // Prepare the data payload for the API
+  //   const data = {
+  //       id: idata,                
+  //       trackingNumber: trackingNumber,
+  //       Transac_status:Transac_status,
+  //       laundry: this.post,  
+  //       // Transac: this.trans
+  //   };
+  //   // Debugging: Check the payload before sending
+  //   console.log('Payload:', data);
+  //   this.post = [];
+  //   console.log(data);
+  
+  //   // Send the data to the Laravel API using an HTTP POST request
+  //   return this.http.post(this.apiUrl + 'transactions', data);  // Laravel API endpoint
+  // }
   insertorder(idata: any, trackingNumber: string,Transac_status:string):Observable<any> {
     // Prepare the data payload for the API
     const data = {
@@ -32,7 +49,6 @@ export class MyServiceService {
     // Send the data to the Laravel API using an HTTP POST request
     return this.http.post(this.apiUrl + 'transactions', data);  // Laravel API endpoint
   }
-
   register(data:any): Observable<any>{
     return this.http.post(this.apiUrl + 'register',data);
   }

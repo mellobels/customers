@@ -14,16 +14,22 @@ import Swal from 'sweetalert2';
 })
 export class CusLoginComponent implements OnInit{
   logdata: any;
+  showPassword: boolean = false;
+
 
   constructor(
     private myserv: MyServiceService, 
     private route: Router)
   {}
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword; 
+  }
   
   loginForm =new FormGroup({
     email: new FormControl(null),
     password: new FormControl(null),
   })
+  
 
   
   ngOnInit(): void {  

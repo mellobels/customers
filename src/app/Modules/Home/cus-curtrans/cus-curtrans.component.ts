@@ -62,13 +62,15 @@ export class CusCurtransComponent implements OnInit {
     const selectElement = document.getElementById('browser') as HTMLSelectElement;
     const laundryType = selectElement.value; // Get the categ_id (integer)
     const count = (document.getElementById('weight') as HTMLInputElement).value; // Get the qty
+    const transacStatus = this.selectedService; 
 
     if (laundryType && count != null) {
       const newItem = {
         Categ_ID: laundryType, // Store the categ_id (integer)
         Category: selectElement.options[selectElement.selectedIndex].text, // Store the category name (text)
         Qty: count, // Store the quantity
-        Transac_status:"Pending"
+        Transac_status:"Pending",
+        Status: transacStatus
       };
 
       this.laundryList.push(newItem); // Add the new item to the list
@@ -106,7 +108,9 @@ export class CusCurtransComponent implements OnInit {
 
       if(this.latestTransactions && this.latestTransactions.length > 0){
         const pendingTransactions = this.latestTransactions.filter((transs: any) => 
-        transs.trans_stat === 'paid');
+        transs.trans_stat === 'paid' ||
+        transs.trans_stat === 'Pending'
+      );
         
   
         if(pendingTransactions.length > 0){
@@ -123,6 +127,21 @@ export class CusCurtransComponent implements OnInit {
   }
 
   // Insert a new order
+  // insertOrder() {
+  //   const stat = "Pending"
+  //   const transacStatus = this.selectedService; 
+  //   if (transacStatus != null) {
+  //     this.post.trans = transacStatus; // Set trans directly as a string
+  //   }
+  //   console.log(this.customerId,this.trackingNumber,stat,this.post.trans)
+  //   this.post.insertorder(this.customerId, this.trackingNumber,stat).subscribe((data: any) => {
+  //     console.log(data);
+  //     console.log("LAUNDRY",this.laundryList);
+  //     this.laundryList = []; // Reset laundry list after order insertion
+  //     console.log(this.post.trans);
+  //     this.fetch();
+  //   });
+  // }
   insertOrder() {
     const stat = "Pending"
     const transacStatus = this.selectedService; 
@@ -134,6 +153,7 @@ export class CusCurtransComponent implements OnInit {
       console.log("LAUNDRY",this.laundryList);
       this.laundryList = []; // Reset laundry list after order insertion
       console.log(this.post.trans);
+      console.log(this.laundryList)
       this.fetch();
     });
   }
@@ -152,6 +172,7 @@ export class CusCurtransComponent implements OnInit {
       console.log(result);
       this.loadLatestTransactions();
     });
+    // console.log(orderId)
   }
 
   updateTransaction() {

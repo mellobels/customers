@@ -60,7 +60,7 @@
                 <td>
                   <button 
                     class="btn btn-warning btn-sm" 
-                    (click)="cancelOrder(latest.Tracking_number)" 
+                    (click)="cancelOrder(latest.track_num)" 
                     [disabled]="latest.trans_stat != 'Pending'"
                   >
                     Cancel
@@ -68,8 +68,6 @@
                     <td> 
                       <button class="btn btn-warning btn-sm" (click)=" viewItem(latest.trans_ID)" >View</button> <!-- View button -->
                     </td>
-                  
-                   
                   </tr>
                 }
               </tbody>
@@ -147,7 +145,7 @@
               <hr>
               <div class="row">
                 <!-- Laundry Type -->
-                <div class="col-12 col-md-4 mb-3">
+                <div class="col-5 col-md-3 mb-3">
                   <div class="form-group">
                     <label for="browser" class="control-label">Laundry Type</label>
                     <select class="form-control" id="browser" name="browser">
@@ -160,53 +158,77 @@
                 </div>
 
                 <!-- Count -->
-                <div class="col-12 col-md-4 mb-3">
+                <div class="col-sm-2">
                   <div class="form-group">
                     <label for="weight" class="control-label">Count</label>
                     <input type="number" step="any" min="1" value="1" class="form-control text-right" id="weight">
                   </div>
                 </div>
 
-              <!-- Services (Hand Wash, Press) -->
-<div class="row">
-  <div class="col-12 col-md-6 mb-3">
-    <div class="form-group">
-      <label for="services" class="control-label">Services</label><br>
-      <div class="d-flex">
-        <div class="form-check me-3">
-          <input class="form-check-input" type="radio" name="serviceType" id="handWash" value="handWash" [(ngModel)]="selectedService">
-          <label class="form-check-label" for="handWash">Hand Wash</label>
-        </div>
-        <div class="form-check me-3">
-          <input class="form-check-input" type="radio" name="serviceType" id="press" value="press" [(ngModel)]="selectedService">
-          <label class="form-check-label" for="press">Press</label>
-        </div>
-        <div class="form-check me-3">
-          <input class="form-check-input" type="radio" name="serviceType" id="rush" value="rush" [(ngModel)]="selectedService">
-          <label class="form-check-label" for="rush">Rush Jobs</label>
-        </div>
-        <div class="form-check me-3">
-          <input class="form-check-input" type="radio" name="serviceType" id="pick-up" value="pick-up" [(ngModel)]="selectedService">
-          <label class="form-check-label" for="pick-up">Pick-up</label>
-        </div>
-        <div class="form-check me-3">
-          <input class="form-check-input" type="radio" name="serviceType" id="delivery" value="delivery" [(ngModel)]="selectedService">
-          <label class="form-check-label" for="delivery">Delivery</label>
-        </div>
-      </div>
-      <label>Selected Service: {{ selectedService }}</label>
-    </div>
-  </div>
-</div>
+                <div class="col-sm-1">
+                  <label for="weight" class="control-label">Services</label>
+                  <div class="form-group mt-2 mx-3">
+                    <input class="form-check-input" type="radio" name="serviceType" id="press" value="press" [(ngModel)]="selectedService">
+                    <label class="form-check-label" for="press">Press</label>
+                  </div>
+                </div>
 
-                <!-- Add to List Button -->
-                <div class="col-12 col-md-4 d-flex align-items-end mb-3">
+                <div class="col-sm-3">
+                  <label for="weight" class="control-label">.</label>
+                  <div class="form-group mt-2 mx-3">
+                      <input class="form-check-input" type="radio" name="serviceType" id="handWash" value="handWash" [(ngModel)]="selectedService">
+                      <label class="form-check-label" for="handWash">Hand Wash</label>
+                  </div>
+                </div>
+
+                <div class="col-3 col-md-3 d-flex align-items-end mb-3">
                   <div class="form-group w-100">
                     <button (click)="addToList()" class="btn btn-info btn-sm w-100" type="button" id="add_to_list">
                       <i class="fa fa-plus"></i> Add to List
                     </button>
                   </div>
                 </div>
+
+              <!-- Services (Hand Wash, Press) -->
+              <div class="row">
+                <div class="col-12 col-md-6 mb-3">
+                  <div class="form-group">
+                    <label for="services" class="control-label">Services</label><br>
+                    <div class="d-flex">
+                      <!-- <div class="form-check me-3">
+                        <input class="form-check-input" type="radio" name="serviceType" id="handWash" value="handWash" [(ngModel)]="selectedService">
+                        <label class="form-check-label" for="handWash">Hand Wash</label>
+                      </div> -->
+                      <!-- <div class="form-check me-3">
+                        <input class="form-check-input" type="radio" name="serviceType" id="press" value="press" [(ngModel)]="selectedService">
+                        <label class="form-check-label" for="press">Press</label>
+                      </div> -->
+                      <div class="form-check me-3">
+                        <input class="form-check-input" type="radio" name="serviceType" id="rush" value="rush" [(ngModel)]="selectedService">
+                        <label class="form-check-label" for="rush">Rush Jobs</label>
+                      </div>
+                      <div class="form-check me-3">
+                        <input class="form-check-input" type="radio" name="serviceType" id="pick-up" value="pick-up" [(ngModel)]="selectedService">
+                        <label class="form-check-label" for="pick-up">Pick-up</label>
+                      </div>
+                      <div class="form-check me-3">
+                        <input class="form-check-input" type="radio" name="serviceType" id="delivery" value="delivery" [(ngModel)]="selectedService">
+                        <label class="form-check-label" for="delivery">Delivery</label>
+                      </div>
+                    </div>
+                    <label>Selected Service: {{ selectedService }}</label>
+                  </div>
+                </div>
+              </div>
+
+                <!-- Add to List Button -->
+                <!-- <div class="col-12 col-md-4 d-flex align-items-end mb-3">
+                  <div class="form-group w-100">
+                    <button (click)="addToList()" class="btn btn-info btn-sm w-100" type="button" id="add_to_list">
+                      <i class="fa fa-plus"></i> Add to List
+                    </button>
+                  </div>
+                </div> -->
               </div>
               <!-- Table for List Items -->
               <div class="row">
@@ -221,6 +243,8 @@
                       <tr>
                         <th class="text-center">Category</th>
                         <th class="text-center">Qty</th>
+                        <th class="text-center">Services</th>
+                        <th class="text-center">Message</th> 
                         <th class="text-center">Actions</th>
                       </tr>
                     </thead>
@@ -230,7 +254,13 @@
                         <tr>
                           <td class="text-center">{{ l.Category }}</td>
                           <td class="text-center">{{ l.Qty }}</td>
-                          <td class="text-center">
+                          <td class="text-center">{{ l.Status }}</td>
+                          <td class="text-center col-sm-4">
+                            <div class="form-check me-3">
+                              <input type="text" id="searchInput" class="form-control"  placeholder="" style="width: 200px;">
+                            </div>
+                          </td>
+                          <td class="text-center col-sm-1">
                             <button class="btn btn-danger btn-sm" (click)="removeFromList(l)"><i class="fa fa-times"></i></button>
                           </td>
                         </tr>
@@ -250,7 +280,7 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" 
                 (click)="insertOrder()" 
                 [disabled]="!selectedService">
-          Save
+                Save
         </button>
       </div>
     </div>

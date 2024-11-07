@@ -120,4 +120,24 @@ section{
       padding: 20px;
     }
   }
-  
+
+
+.password-container {
+  position: relative;
+  width: 100%; /* Ensures the container is responsive */
+  max-width: 500px; /* Set a max width for larger screens */
+  /* margin: auto;  */
+}
+
+.password-input {
+  width: 100%;
+  padding-right: 2rem; 
+}
+
+.password-toggle-icon {
+  position: absolute;
+  right: 4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
