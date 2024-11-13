@@ -28,7 +28,7 @@
 
               <tbody>
                 @for (latest of latestTransactions; track latest) {
-                  <tr>
+                  <tr (click)=" viewItem(latest.trans_ID)">
                     <!-- <td>{{l.Transacdet_id}}</td> -->
                     <td>{{latest.track_num}}</td>
                     <td>{{latest.Category}}</td>
@@ -65,9 +65,9 @@
                   >
                     Cancel
                   </button>
-                    <td> 
-                      <button class="btn btn-warning btn-sm" (click)=" viewItem(latest.trans_ID)" >View</button> <!-- View button -->
-                    </td>
+                   <!-- <td> 
+                      <button class="btn btn-warning btn-sm" (click)=" viewItem(latest.trans_ID)" >View</button> 
+                    </td> -->
                   </tr>
                 }
               </tbody>
@@ -244,7 +244,7 @@
                         <th class="text-center">Category</th>
                         <th class="text-center">Qty</th>
                         <th class="text-center">Services</th>
-                        <th class="text-center">Message</th> 
+                        <th class="text-center">Description</th> 
                         <th class="text-center">Actions</th>
                       </tr>
                     </thead>

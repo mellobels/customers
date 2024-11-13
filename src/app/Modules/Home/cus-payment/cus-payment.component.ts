@@ -24,6 +24,15 @@ export class CusPaymentComponent implements OnInit{
   uploadform: any;
   currentDate:any;
 
+  steps = ['Ordered', 'Shipped', 'On the way', 'Delivered'];
+  currentStep = 0;
+
+  // tracking(stepIndex: number) {
+  //   if (stepIndex >= 0 && stepIndex < this.steps.length) {
+  //     this.currentStep = stepIndex;
+  //   }
+  // }
+
   constructor(private http: HttpClient, private route: Router){
     this.uploadform = new FormGroup({
       Mode_of_Payment: new FormControl(null),
@@ -34,6 +43,7 @@ export class CusPaymentComponent implements OnInit{
   ngOnInit(): void {
     console.log(this.trackingNumber)
     this.currentDate = this.formatDate(new Date());
+    this.tracking();
   }
 
   formatDate(date:Date): string{
@@ -106,6 +116,11 @@ export class CusPaymentComponent implements OnInit{
     }
     
   }
+
+  tracking(){
+    console.log("success")
+  }
+  
   
 
 }

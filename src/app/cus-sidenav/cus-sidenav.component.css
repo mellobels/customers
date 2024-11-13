@@ -6,6 +6,16 @@
   margin: 0 10px; /* Adjust spacing between nav items */
 }
 
+.collapse {
+  transition: max-height 0.3s ease-in-out;
+}
+
+.collapse.show {
+  display: block !important;
+  max-height: 500px; /* Adjust as needed */
+}
+
+
 
 .flare {
   background: #5988e2;

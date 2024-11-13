@@ -16,6 +16,11 @@ export class PanelComponent implements OnInit{
   getDet:any;
   Transac_ID:any;
   track:any;
+  detget: any;
+
+  steps = ['Ordered', 'Shipped', 'On the way', 'Delivered'];
+  currentStep = 0;
+  
   constructor(private myserv:MyServiceService){}
   
   ngOnInit(): void {
@@ -25,11 +30,13 @@ export class PanelComponent implements OnInit{
       this.myserv.getDetails(this.Transac_ID).subscribe((result:any)=>{
         this.getDet = result;
         this.track = result.Tracking_number;
+        this.detget = this.tracking(this.getDet[0].status);
         // console.log(this.trackingnumber);
-        console.log(this.getDet);
+        console.log(this.getDet[0].status);
         console.log(result)
+        console.log(this.detget);
       })
-    }
+  }
 
     
   formatDate(date:Date): string{
@@ -40,4 +47,12 @@ export class PanelComponent implements OnInit{
     }
     return date.toLocaleDateString('en-US',options);
   }
+
+  tracking(stepIndex: any) {
+    if (stepIndex >= 0 && stepIndex < this.steps.length) {
+      this.currentStep = stepIndex;
+    }
+  }
+
+  
 }

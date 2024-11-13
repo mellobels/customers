@@ -24,14 +24,49 @@
     </div>
   </div>
 </div>
-
+<!-- 
 <nav class="navbar navbar-expand-lg p-0 m-0" style="background-color: #5988e2;">
   <div class="container-fluid">
     <a class="navbar-brand" href="#"><img src="assets/s2klogo.png" alt="S2K Logo" height="62"></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" [ngStyle]="{ 'margin-left.px': isOpen ? 250 : 0 }"data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" [ngClass]="{ open: isOpen }">
+      <span class="navbar-toggler-icon" (click)="toggleNav()"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown"  [ngClass]="{ open: isOpen }">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link mx-2 active text-white" [routerLink]="['/main/cusmainhome']" routerLinkActive="active">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2 text-white" [routerLink]="['/main/maintrans']" routerLinkActive="active">Transactions</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2 text-white" [routerLink]="['/main/mainaccount']" routerLinkActive="active">Account</a>
+        </li>
+        <li class="nav-item flare">
+          <a class="nav-link mx-2 text-white" (click)="logout()" routerLinkActive="active">Logout<span class="ms-2">&#x2192;</span></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav> -->
+<nav class="navbar navbar-expand-lg p-0 m-0" style="background-color: #5988e2;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="assets/s2klogo.png" alt="S2K Logo" height="62">
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="toggleNav()"
+      [ngStyle]="{ 'margin-left.px': isOpen ? 250 : 0 }"
+      aria-controls="navbarNavDropdown"
+      [attr.aria-expanded]="isOpen ? 'true' : 'false'"
+      aria-label="Toggle navigation"
+      [ngClass]="{ open: isOpen }"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': isOpen }" id="navbarNavDropdown">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
           <a class="nav-link mx-2 active text-white" [routerLink]="['/main/cusmainhome']" routerLinkActive="active">Home</a>
@@ -49,6 +84,7 @@
     </div>
   </div>
 </nav>
+
 
 
 <div class="main-content" style="margin-top: 50px">

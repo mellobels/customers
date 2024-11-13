@@ -15,6 +15,9 @@ import { MyServiceService } from '../my-service.service';
 export class CusSidenavComponent {
   isOpen: boolean = true;
 
+  // toggleNav(): void {
+  //   this.isOpen = !this.isOpen;
+  // }
   toggleNav(): void {
     this.isOpen = !this.isOpen;
   }

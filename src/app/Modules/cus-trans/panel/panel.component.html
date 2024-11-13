@@ -8,11 +8,21 @@
             <div id="collapseCC" class="accordion-collapse collapse show" data-bs-parent="#accordionPayment">
               <div class="accordion-body">
                 <div class="progress-track">
-                    <ul id="progressbar">
+                    <!-- <ul id="progressbar">
                       <li class="step0 active fs-6" id="step1">Ordered</li>
                       <li class="step0 active text-center fs-6" id="step2">Shipped</li>
                       <li class="step0 active text-center fs-6" id="step3">On the way</li>
                       <li class="step0 text-end fs-6" id="step4">Delivered</li>
+                    </ul> -->
+                    <ul id="progressbar">
+                      <li
+                        *ngFor="let step of steps; let i = index"
+                        [ngClass]="{ 'active': i <= currentStep }"
+                        class="step0 fs-6"
+                        (click)="tracking(i)"
+                      >
+                        {{ step }}
+                      </li>
                     </ul>
                   </div>
                   @for(g of getDet ;track g.Transac_det){
