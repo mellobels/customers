@@ -19,7 +19,7 @@ export const Transroute: Routes = [
             
             {path:"viewhistory",component:ViewhistoryComponent},
             {path:"",redirectTo:"viewhistory",pathMatch:"full"},
-            { path:'maintrans',component:MaintransComponent},
+            {path:'maintrans',component:MaintransComponent},
             {path:"",redirectTo:"maintrans",pathMatch:"full"}
 
     ]
